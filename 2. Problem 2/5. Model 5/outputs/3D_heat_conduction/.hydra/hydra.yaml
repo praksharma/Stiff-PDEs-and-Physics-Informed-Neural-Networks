@@ -1,0 +1,133 @@
+hydra:
+  run:
+    dir: outputs/${hydra:job.override_dirname}/${hydra:job.name}
+  sweep:
+    dir: multirun
+    subdir: ${hydra.job.override_dirname}
+  launcher:
+    _target_: hydra._internal.core_plugins.basic_launcher.BasicLauncher
+  sweeper:
+    _target_: hydra._internal.core_plugins.basic_sweeper.BasicSweeper
+    max_batch_size: null
+  help:
+    app_name: NVIDIA Modulus
+    header: == ${hydra.help.app_name} ==
+    footer: "Nvidia Coorporation (https://developer.nvidia.com/modulus)\nBy using\
+      \ this software you are agreeing to the \nSOFTWARE DEVELOPER KITS, SAMPLES AND\
+      \ TOOLS LICENSE AGREEMENT"
+    template: "${hydra.help.header}\n\nNVIDIA Modulus is a neural network framework\
+      \ that blends the power of physics \nand partial differential equations (PDEs)\
+      \ with AI to build more robust models \nfor better analysis.\n\nFor news, bug\
+      \ reports and support see the forums:\nhttps://forums.developer.nvidia.com/c/physics-simulation/modulus-physics-ml-model-framework/443\n\
+      \nModulus is configurable with hydra.\nThe current modulus configuration groups\
+      \ available are:\n===\n$APP_CONFIG_GROUPS\n===\nNote: Some may be experimental!\n\
+      \n${hydra.help.footer}"
+  hydra_help:
+    template: 'Hydra (${hydra.runtime.version})
+
+      See https://hydra.cc for more info.
+
+
+      == Flags ==
+
+      $FLAGS_HELP
+
+
+      == Configuration groups ==
+
+      Compose your configuration from those groups (For example, append hydra/job_logging=disabled
+      to command line)
+
+
+      $HYDRA_CONFIG_GROUPS
+
+
+      Use ''--cfg hydra'' to Show the Hydra config.
+
+      '
+    hydra_help: ???
+  hydra_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s][HYDRA] %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    root:
+      level: INFO
+      handlers:
+      - console
+    loggers:
+      logging_example:
+        level: DEBUG
+    disable_existing_loggers: false
+  job_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s] - %(message)s'
+        datefmt: '%H:%M:%S'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    root:
+      handlers:
+      - console
+    disable_existing_loggers: false
+    level: 20
+  env: {}
+  searchpath: []
+  callbacks: {}
+  output_subdir: .hydra
+  overrides:
+    hydra: []
+    task: []
+  job:
+    name: 3D_heat_conduction
+    override_dirname: ''
+    id: ???
+    num: ???
+    config_name: config
+    env_set: {}
+    env_copy: []
+    config:
+      override_dirname:
+        kv_sep: '='
+        item_sep: ','
+        exclude_keys: []
+  runtime:
+    version: 1.1.2
+    cwd: /scratch/s.1915438/Modulus_my_examples/3D_heat_conduction/2. SDF (interior
+      node only)
+    config_sources:
+    - path: hydra.conf
+      schema: pkg
+      provider: hydra
+    - path: /scratch/s.1915438/Modulus_my_examples/3D_heat_conduction/2. SDF (interior
+        node only)/conf
+      schema: file
+      provider: main
+    - path: ''
+      schema: structured
+      provider: schema
+    choices:
+      loss: sum
+      optimizer: adam
+      scheduler: tf_exponential_lr
+      profiler: nvtx
+      training: default_training
+      hydra/env: default
+      hydra/callbacks: null
+      hydra/job_logging: info_logging
+      hydra/hydra_logging: default
+      hydra/hydra_help: default
+      hydra/help: modulus_help
+      hydra/sweeper: basic
+      hydra/launcher: basic
+      hydra/output: default
+  verbose: ${debug}

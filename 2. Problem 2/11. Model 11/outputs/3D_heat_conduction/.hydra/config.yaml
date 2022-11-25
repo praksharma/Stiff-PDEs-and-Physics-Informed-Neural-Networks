@@ -1,0 +1,59 @@
+training:
+  max_steps: 30000
+  grad_agg_freq: 1
+  rec_results_freq: 1000
+  rec_validation_freq: 100
+  rec_inference_freq: 100
+  rec_monitor_freq: 100
+  rec_constraint_freq: 100
+  save_network_freq: 1000
+  print_stats_freq: 100
+  summary_freq: 1000
+  amp: false
+  amp_dtype: float16
+  ntk:
+    use_ntk: false
+    save_name: null
+    run_freq: 1000
+profiler:
+  profile: false
+  start_step: 0
+  end_step: 100
+  name: nvtx
+network_dir: .
+initialization_network_dir: ''
+save_filetypes: vtk,npz
+summary_histograms: true
+jit: false
+device: ''
+debug: false
+run_mode: train
+arch: ???
+loss:
+  _target_: modulus.aggregator.Sum
+  weights: null
+optimizer:
+  _params_:
+    compute_gradients: adam_compute_gradients
+    apply_gradients: adam_apply_gradients
+  _target_: torch.optim.Adam
+  lr: 0.001
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  weight_decay: 0.0
+  amsgrad: false
+scheduler:
+  _target_: custom
+  _name_: tf.ExponentialLR
+  decay_rate: 0.95
+  decay_steps: 4000
+batch_size:
+  Wall: 1000
+  Interior: 4000
+custom:
+  arch: DGMArch
+  exact_continuity: false
+  quasirandom: true
+  adaptive_activations: true

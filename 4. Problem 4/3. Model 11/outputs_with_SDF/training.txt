@@ -1,0 +1,229 @@
+training:
+  max_steps: 20000
+  grad_agg_freq: 1
+  rec_results_freq: 1000
+  rec_validation_freq: 100
+  rec_inference_freq: 100
+  rec_monitor_freq: 100
+  rec_constraint_freq: 100
+  save_network_freq: 1000
+  print_stats_freq: 100
+  summary_freq: 1000
+  amp: false
+  amp_dtype: float16
+  ntk:
+    use_ntk: false
+    save_name: null
+    run_freq: 1000
+profiler:
+  profile: false
+  start_step: 0
+  end_step: 100
+  name: nvtx
+network_dir: .
+initialization_network_dir: ''
+save_filetypes: vtk,npz
+summary_histograms: true
+jit: false
+device: ''
+debug: false
+run_mode: train
+arch: ???
+loss:
+  _target_: modulus.aggregator.Sum
+  weights: null
+optimizer:
+  _params_:
+    compute_gradients: adam_compute_gradients
+    apply_gradients: adam_apply_gradients
+  _target_: torch.optim.Adam
+  lr: 0.001
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  weight_decay: 0.0
+  amsgrad: false
+scheduler:
+  _target_: custom
+  _name_: tf.ExponentialLR
+  decay_rate: 0.95
+  decay_steps: 4000
+batch_size:
+  Wall: 1000
+  Param_Wall: 4000
+  Interior: 4000
+custom:
+  parameterized: true
+  arch: DGMArch
+  exact_continuity: false
+  quasirandom: true
+  adaptive_activations: true
+
+Architecture: Deep Galerkin method (DGM) Arch
+Nodes Initialised
+NVIDIA A100-PCIE-40GB
+Geometry created
+Domain created
+Bottom wall BC created
+Top wall BC created
+Left wall BC created
+Right wall BC created
+Interior points created
+Validation Data loaded
+Inference outputs loaded
+[19:35:43] - attempting to restore from: outputs/2D_heat_conduction
+[19:35:43] - optimizer checkpoint not found
+[19:35:43] - model heat_network.pth not found
+[19:35:44] - [step:          0] record contraint batch time:  1.685e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:35:44] - [step:          0] record inferencers time:  3.523e-01s
+[19:35:44] - [step:          0] saved checkpoint to outputs/2D_heat_conduction
+[19:35:44] - [step:          0] loss:  1.802e+03
+[19:36:06] - [step:        100] record contraint batch time:  1.279e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:36:06] - [step:        100] record inferencers time:  3.173e-01s
+[19:36:06] - [step:        100] loss:  1.827e-01, time/iteration:  2.220e+02ms
+[19:36:28] - [step:        200] record contraint batch time:  1.274e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:36:28] - [step:        200] record inferencers time:  3.191e-01s
+[19:36:28] - [step:        200] loss:  6.720e-02, time/iteration:  2.169e+02ms
+[19:36:50] - [step:        300] record contraint batch time:  1.354e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:36:50] - [step:        300] record inferencers time:  3.355e-01s
+[19:36:50] - [step:        300] loss:  4.203e-02, time/iteration:  2.236e+02ms
+[19:37:12] - [step:        400] record contraint batch time:  1.275e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:37:12] - [step:        400] record inferencers time:  3.188e-01s
+[19:37:12] - [step:        400] loss:  3.070e-02, time/iteration:  2.173e+02ms
+[19:37:34] - [step:        500] record contraint batch time:  1.281e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:37:34] - [step:        500] record inferencers time:  3.170e-01s
+[19:37:34] - [step:        500] loss:  2.418e-02, time/iteration:  2.167e+02ms
+[19:37:56] - [step:        600] record contraint batch time:  1.354e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:37:56] - [step:        600] record inferencers time:  3.396e-01s
+[19:37:56] - [step:        600] loss:  1.986e-02, time/iteration:  2.239e+02ms
+[19:38:18] - [step:        700] record contraint batch time:  1.268e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:38:18] - [step:        700] record inferencers time:  3.209e-01s
+[19:38:18] - [step:        700] loss:  1.664e-02, time/iteration:  2.218e+02ms
+[19:38:40] - [step:        800] record contraint batch time:  1.283e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:38:40] - [step:        800] record inferencers time:  3.173e-01s
+[19:38:40] - [step:        800] loss:  1.463e-02, time/iteration:  2.174e+02ms
+[19:39:02] - [step:        900] record contraint batch time:  1.281e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:39:02] - [step:        900] record inferencers time:  3.170e-01s
+[19:39:02] - [step:        900] loss:  1.265e-02, time/iteration:  2.168e+02ms
+[19:40:38] - [step:       1000] record contraint batch time:  1.302e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:40:38] - [step:       1000] record inferencers time:  3.185e-01s
+[19:40:38] - [step:       1000] saved checkpoint to outputs/2D_heat_conduction
+[19:40:38] - [step:       1000] loss:  1.127e-02, time/iteration:  9.657e+02ms
+[19:41:00] - [step:       1100] record contraint batch time:  1.344e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:41:01] - [step:       1100] record inferencers time:  3.352e-01s
+[19:41:01] - [step:       1100] loss:  1.049e-02, time/iteration:  2.212e+02ms
+[19:41:22] - [step:       1200] record contraint batch time:  1.296e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:41:23] - [step:       1200] record inferencers time:  3.195e-01s
+[19:41:23] - [step:       1200] loss:  9.810e-03, time/iteration:  2.201e+02ms
+[19:41:44] - [step:       1300] record contraint batch time:  1.280e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:41:44] - [step:       1300] record inferencers time:  3.183e-01s
+[19:41:44] - [step:       1300] loss:  9.217e-03, time/iteration:  2.189e+02ms
+[19:42:06] - [step:       1400] record contraint batch time:  1.379e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:42:07] - [step:       1400] record inferencers time:  3.446e-01s
+[19:42:07] - [step:       1400] loss:  8.252e-03, time/iteration:  2.208e+02ms
+[19:42:28] - [step:       1500] record contraint batch time:  1.293e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:42:29] - [step:       1500] record inferencers time:  3.175e-01s
+[19:42:29] - [step:       1500] loss:  8.204e-03, time/iteration:  2.199e+02ms
+[19:42:50] - [step:       1600] record contraint batch time:  1.299e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:42:50] - [step:       1600] record inferencers time:  3.219e-01s
+[19:42:50] - [step:       1600] loss:  1.003e-02, time/iteration:  2.195e+02ms
+[19:43:12] - [step:       1700] record contraint batch time:  1.282e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:43:13] - [step:       1700] record inferencers time:  3.179e-01s
+[19:43:13] - [step:       1700] loss:  8.036e-03, time/iteration:  2.217e+02ms
+[19:43:34] - [step:       1800] record contraint batch time:  1.304e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:43:34] - [step:       1800] record inferencers time:  3.186e-01s
+[19:43:34] - [step:       1800] loss:  9.123e-03, time/iteration:  2.185e+02ms
+[19:43:56] - [step:       1900] record contraint batch time:  1.291e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:43:57] - [step:       1900] record inferencers time:  3.205e-01s
+[19:43:57] - [step:       1900] loss:  1.147e-02, time/iteration:  2.225e+02ms
+[19:45:34] - [step:       2000] record contraint batch time:  1.309e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:45:34] - [step:       2000] record inferencers time:  3.193e-01s
+[19:45:34] - [step:       2000] saved checkpoint to outputs/2D_heat_conduction
+[19:45:34] - [step:       2000] loss:  1.191e-02, time/iteration:  9.725e+02ms
+[19:45:56] - [step:       2100] record contraint batch time:  1.388e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:45:56] - [step:       2100] record inferencers time:  3.441e-01s
+[19:45:56] - [step:       2100] loss:  1.517e-02, time/iteration:  2.252e+02ms
+[19:46:19] - [step:       2200] record contraint batch time:  1.420e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:46:19] - [step:       2200] record inferencers time:  3.408e-01s
+[19:46:19] - [step:       2200] loss:  1.649e-02, time/iteration:  2.300e+02ms
+[19:46:41] - [step:       2300] record contraint batch time:  1.437e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:46:42] - [step:       2300] record inferencers time:  3.495e-01s
+[19:46:42] - [step:       2300] loss:  5.415e-02, time/iteration:  2.214e+02ms
+[19:47:03] - [step:       2400] record contraint batch time:  1.292e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:47:04] - [step:       2400] record inferencers time:  3.182e-01s
+[19:47:04] - [step:       2400] loss:  5.840e-03, time/iteration:  2.210e+02ms
+[19:47:25] - [step:       2500] record contraint batch time:  1.392e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:47:26] - [step:       2500] record inferencers time:  3.292e-01s
+[19:47:26] - [step:       2500] loss:  7.661e-03, time/iteration:  2.202e+02ms
+[19:47:47] - [step:       2600] record contraint batch time:  1.293e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:47:48] - [step:       2600] record inferencers time:  3.188e-01s
+[19:47:48] - [step:       2600] loss:  1.124e-02, time/iteration:  2.206e+02ms
+[19:48:10] - [step:       2700] record contraint batch time:  1.396e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:48:10] - [step:       2700] record inferencers time:  3.408e-01s
+[19:48:10] - [step:       2700] loss:  7.625e-03, time/iteration:  2.226e+02ms
+[19:48:32] - [step:       2800] record contraint batch time:  1.282e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:48:32] - [step:       2800] record inferencers time:  3.166e-01s
+[19:48:32] - [step:       2800] loss:  1.234e-02, time/iteration:  2.205e+02ms
+[19:48:54] - [step:       2900] record contraint batch time:  1.298e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:48:54] - [step:       2900] record inferencers time:  3.184e-01s
+[19:48:54] - [step:       2900] loss:  6.003e-03, time/iteration:  2.188e+02ms
+[19:50:28] - [step:       3000] record contraint batch time:  1.299e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:50:28] - [step:       3000] record inferencers time:  3.194e-01s
+[19:50:28] - [step:       3000] saved checkpoint to outputs/2D_heat_conduction
+[19:50:28] - [step:       3000] loss:  4.889e-03, time/iteration:  9.405e+02ms
+[19:50:50] - [step:       3100] record contraint batch time:  1.295e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:50:50] - [step:       3100] record inferencers time:  3.206e-01s
+[19:50:50] - [step:       3100] loss:  7.679e-03, time/iteration:  2.178e+02ms
+[19:51:11] - [step:       3200] record contraint batch time:  1.287e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:51:12] - [step:       3200] record inferencers time:  3.162e-01s
+[19:51:12] - [step:       3200] loss:  6.969e-03, time/iteration:  2.182e+02ms
+[19:51:33] - [step:       3300] record contraint batch time:  1.284e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:51:33] - [step:       3300] record inferencers time:  3.167e-01s
+[19:51:33] - [step:       3300] loss:  5.417e-02, time/iteration:  2.180e+02ms
+[19:51:55] - [step:       3400] record contraint batch time:  1.284e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:51:55] - [step:       3400] record inferencers time:  3.176e-01s
+[19:51:55] - [step:       3400] loss:  4.819e-03, time/iteration:  2.181e+02ms
+[19:52:17] - [step:       3500] record contraint batch time:  1.285e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:52:17] - [step:       3500] record inferencers time:  3.227e-01s
+[19:52:17] - [step:       3500] loss:  1.362e-01, time/iteration:  2.183e+02ms
+[19:52:39] - [step:       3600] record contraint batch time:  1.287e-01s
+Default plotter can only handle <=2 input dimensions, passing
+[19:52:39] - [step:       3600] record inferencers time:  3.167e-01s
+[19:52:39] - [step:       3600] loss:  4.667e-03, time/iteration:  2.182e+02ms

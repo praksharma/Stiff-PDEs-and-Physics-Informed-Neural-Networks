@@ -1,0 +1,569 @@
+training:
+  max_steps: 20000
+  grad_agg_freq: 1
+  rec_results_freq: 1000
+  rec_validation_freq: 100
+  rec_inference_freq: 100
+  rec_monitor_freq: 100
+  rec_constraint_freq: 100
+  save_network_freq: 1000
+  print_stats_freq: 100
+  summary_freq: 1000
+  amp: false
+  amp_dtype: float16
+  ntk:
+    use_ntk: false
+    save_name: null
+    run_freq: 1000
+profiler:
+  profile: false
+  start_step: 0
+  end_step: 100
+  name: nvtx
+network_dir: .
+initialization_network_dir: ''
+save_filetypes: vtk,npz
+summary_histograms: true
+jit: false
+device: ''
+debug: false
+run_mode: train
+arch:
+  fully_connected:
+    _target_: modulus.architecture.fully_connected.FullyConnectedArch
+    layer_size: 512
+    nr_layers: 6
+    skip_connections: false
+    adaptive_activations: false
+    weight_norm: true
+loss:
+  _target_: modulus.aggregator.Sum
+  weights: null
+optimizer:
+  _params_:
+    compute_gradients: adam_compute_gradients
+    apply_gradients: adam_apply_gradients
+  _target_: torch.optim.Adam
+  lr: 0.001
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  weight_decay: 0.0
+  amsgrad: false
+scheduler:
+  _target_: custom
+  _name_: tf.ExponentialLR
+  decay_rate: 0.95
+  decay_steps: 4000
+batch_size:
+  Wall: 1000
+  Interior: 4000
+custom: ???
+
+Nodes Initialised
+Geometry created
+Domain created
+Bottom wall BC created
+Top wall BC created
+Left wall BC created
+Right wall BC created
+Interior points created
+Validation dataset keys  ['nodes', 'temperature', 'boundary_nodal_coordinates', 'boundary_solution']
+Validation Data loaded
+Inference outputs loaded
+[07:21:18] - attempting to restore from: outputs/2D_heat_conduction
+[07:21:18] - optimizer checkpoint not found
+[07:21:18] - model heat_network.pth not found
+[07:21:18] - [step:          0] record contraint batch time:  5.385e-02s
+[07:21:19] - [step:          0] record validators time:  9.437e-01s
+[07:21:19] - [step:          0] record inferencers time:  3.750e-01s
+[07:21:19] - [step:          0] saved checkpoint to outputs/2D_heat_conduction
+[07:21:19] - [step:          0] loss:  1.998e+00
+[07:21:23] - [step:        100] record contraint batch time:  5.094e-02s
+[07:21:24] - [step:        100] record validators time:  8.874e-01s
+[07:21:25] - [step:        100] record inferencers time:  3.683e-01s
+[07:21:25] - [step:        100] loss:  1.813e-01, time/iteration:  5.340e+01ms
+[07:21:29] - [step:        200] record contraint batch time:  5.056e-02s
+[07:21:30] - [step:        200] record validators time:  8.887e-01s
+[07:21:30] - [step:        200] record inferencers time:  3.687e-01s
+[07:21:30] - [step:        200] loss:  1.688e-01, time/iteration:  5.241e+01ms
+[07:21:34] - [step:        300] record contraint batch time:  5.045e-02s
+[07:21:35] - [step:        300] record validators time:  8.903e-01s
+[07:21:35] - [step:        300] record inferencers time:  3.696e-01s
+[07:21:35] - [step:        300] loss:  1.640e-01, time/iteration:  5.246e+01ms
+[07:21:39] - [step:        400] record contraint batch time:  5.016e-02s
+[07:21:40] - [step:        400] record validators time:  1.000e+00s
+[07:21:41] - [step:        400] record inferencers time:  3.683e-01s
+[07:21:41] - [step:        400] loss:  1.701e-01, time/iteration:  5.352e+01ms
+[07:21:45] - [step:        500] record contraint batch time:  5.001e-02s
+[07:21:45] - [step:        500] record validators time:  8.862e-01s
+[07:21:46] - [step:        500] record inferencers time:  3.678e-01s
+[07:21:46] - [step:        500] loss:  1.716e-01, time/iteration:  5.242e+01ms
+[07:21:50] - [step:        600] record contraint batch time:  4.989e-02s
+[07:21:51] - [step:        600] record validators time:  8.849e-01s
+[07:21:51] - [step:        600] record inferencers time:  3.675e-01s
+[07:21:51] - [step:        600] loss:  1.670e-01, time/iteration:  5.238e+01ms
+[07:21:55] - [step:        700] record contraint batch time:  5.181e-02s
+[07:21:56] - [step:        700] record validators time:  8.850e-01s
+[07:21:56] - [step:        700] record inferencers time:  3.697e-01s
+[07:21:56] - [step:        700] loss:  1.685e-01, time/iteration:  5.241e+01ms
+[07:22:00] - [step:        800] record contraint batch time:  5.017e-02s
+[07:22:01] - [step:        800] record validators time:  1.007e+00s
+[07:22:02] - [step:        800] record inferencers time:  3.679e-01s
+[07:22:02] - [step:        800] loss:  1.703e-01, time/iteration:  5.352e+01ms
+[07:22:06] - [step:        900] record contraint batch time:  5.061e-02s
+[07:22:07] - [step:        900] record validators time:  8.850e-01s
+[07:22:07] - [step:        900] record inferencers time:  3.676e-01s
+[07:22:07] - [step:        900] loss:  1.758e-01, time/iteration:  5.237e+01ms
+[07:22:11] - [step:       1000] record contraint batch time:  5.112e-02s
+[07:22:12] - [step:       1000] record validators time:  8.861e-01s
+[07:22:12] - [step:       1000] record inferencers time:  3.673e-01s
+[07:22:12] - [step:       1000] saved checkpoint to outputs/2D_heat_conduction
+[07:22:12] - [step:       1000] loss:  1.714e-01, time/iteration:  5.508e+01ms
+[07:22:16] - [step:       1100] record contraint batch time:  5.082e-02s
+[07:22:17] - [step:       1100] record validators time:  8.845e-01s
+[07:22:18] - [step:       1100] record inferencers time:  3.679e-01s
+[07:22:18] - [step:       1100] loss:  1.704e-01, time/iteration:  5.232e+01ms
+[07:22:22] - [step:       1200] record contraint batch time:  5.025e-02s
+[07:22:23] - [step:       1200] record validators time:  1.023e+00s
+[07:22:23] - [step:       1200] record inferencers time:  3.506e-01s
+[07:22:23] - [step:       1200] loss:  1.733e-01, time/iteration:  5.349e+01ms
+[07:22:27] - [step:       1300] record contraint batch time:  5.054e-02s
+[07:22:28] - [step:       1300] record validators time:  8.856e-01s
+[07:22:28] - [step:       1300] record inferencers time:  3.681e-01s
+[07:22:28] - [step:       1300] loss:  1.739e-01, time/iteration:  5.242e+01ms
+[07:22:32] - [step:       1400] record contraint batch time:  5.028e-02s
+[07:22:33] - [step:       1400] record validators time:  8.853e-01s
+[07:22:33] - [step:       1400] record inferencers time:  3.674e-01s
+[07:22:33] - [step:       1400] loss:  1.771e-01, time/iteration:  5.239e+01ms
+[07:22:37] - [step:       1500] record contraint batch time:  5.097e-02s
+[07:22:38] - [step:       1500] record validators time:  8.856e-01s
+[07:22:39] - [step:       1500] record inferencers time:  3.682e-01s
+[07:22:39] - [step:       1500] loss:  1.647e-01, time/iteration:  5.244e+01ms
+[07:22:43] - [step:       1600] record contraint batch time:  5.070e-02s
+[07:22:44] - [step:       1600] record validators time:  1.005e+00s
+[07:22:44] - [step:       1600] record inferencers time:  3.681e-01s
+[07:22:44] - [step:       1600] loss:  1.706e-01, time/iteration:  5.360e+01ms
+[07:22:48] - [step:       1700] record contraint batch time:  5.083e-02s
+[07:22:49] - [step:       1700] record validators time:  8.850e-01s
+[07:22:49] - [step:       1700] record inferencers time:  3.677e-01s
+[07:22:49] - [step:       1700] loss:  1.933e-01, time/iteration:  5.240e+01ms
+[07:22:53] - [step:       1800] record contraint batch time:  5.178e-02s
+[07:22:54] - [step:       1800] record validators time:  8.853e-01s
+[07:22:55] - [step:       1800] record inferencers time:  3.684e-01s
+[07:22:55] - [step:       1800] loss:  1.710e-01, time/iteration:  5.237e+01ms
+[07:22:59] - [step:       1900] record contraint batch time:  5.100e-02s
+[07:22:59] - [step:       1900] record validators time:  8.848e-01s
+[07:23:00] - [step:       1900] record inferencers time:  3.684e-01s
+[07:23:00] - [step:       1900] loss:  2.197e-01, time/iteration:  5.241e+01ms
+[07:23:04] - [step:       2000] record contraint batch time:  5.266e-02s
+[07:23:05] - [step:       2000] record validators time:  1.006e+00s
+[07:23:05] - [step:       2000] record inferencers time:  3.683e-01s
+[07:23:05] - [step:       2000] saved checkpoint to outputs/2D_heat_conduction
+[07:23:05] - [step:       2000] loss:  1.564e-01, time/iteration:  5.637e+01ms
+[07:23:09] - [step:       2100] record contraint batch time:  5.179e-02s
+[07:23:10] - [step:       2100] record validators time:  8.854e-01s
+[07:23:11] - [step:       2100] record inferencers time:  3.681e-01s
+[07:23:11] - [step:       2100] loss:  1.608e-01, time/iteration:  5.236e+01ms
+[07:23:15] - [step:       2200] record contraint batch time:  5.111e-02s
+[07:23:16] - [step:       2200] record validators time:  8.855e-01s
+[07:23:16] - [step:       2200] record inferencers time:  3.674e-01s
+[07:23:16] - [step:       2200] loss:  1.626e-01, time/iteration:  5.236e+01ms
+[07:23:20] - [step:       2300] record contraint batch time:  5.260e-02s
+[07:23:21] - [step:       2300] record validators time:  8.845e-01s
+[07:23:21] - [step:       2300] record inferencers time:  3.507e-01s
+[07:23:21] - [step:       2300] loss:  1.543e-01, time/iteration:  5.245e+01ms
+[07:23:25] - [step:       2400] record contraint batch time:  5.095e-02s
+[07:23:26] - [step:       2400] record validators time:  1.006e+00s
+[07:23:27] - [step:       2400] record inferencers time:  3.681e-01s
+[07:23:27] - [step:       2400] loss:  1.499e-01, time/iteration:  5.363e+01ms
+[07:23:31] - [step:       2500] record contraint batch time:  5.158e-02s
+[07:23:31] - [step:       2500] record validators time:  8.847e-01s
+[07:23:32] - [step:       2500] record inferencers time:  3.682e-01s
+[07:23:32] - [step:       2500] loss:  1.504e-01, time/iteration:  5.237e+01ms
+[07:23:36] - [step:       2600] record contraint batch time:  5.192e-02s
+[07:23:37] - [step:       2600] record validators time:  8.851e-01s
+[07:23:37] - [step:       2600] record inferencers time:  3.678e-01s
+[07:23:37] - [step:       2600] loss:  1.546e-01, time/iteration:  5.243e+01ms
+[07:23:41] - [step:       2700] record contraint batch time:  5.210e-02s
+[07:23:42] - [step:       2700] record validators time:  8.854e-01s
+[07:23:42] - [step:       2700] record inferencers time:  3.674e-01s
+[07:23:42] - [step:       2700] loss:  1.440e-01, time/iteration:  5.244e+01ms
+[07:23:46] - [step:       2800] record contraint batch time:  5.108e-02s
+[07:23:47] - [step:       2800] record validators time:  1.005e+00s
+[07:23:48] - [step:       2800] record inferencers time:  3.678e-01s
+[07:23:48] - [step:       2800] loss:  1.496e-01, time/iteration:  5.364e+01ms
+[07:23:52] - [step:       2900] record contraint batch time:  5.252e-02s
+[07:23:53] - [step:       2900] record validators time:  8.855e-01s
+[07:23:53] - [step:       2900] record inferencers time:  3.685e-01s
+[07:23:53] - [step:       2900] loss:  1.524e-01, time/iteration:  5.249e+01ms
+[07:23:57] - [step:       3000] record contraint batch time:  5.176e-02s
+[07:23:58] - [step:       3000] record validators time:  8.840e-01s
+[07:23:58] - [step:       3000] record inferencers time:  3.682e-01s
+[07:23:58] - [step:       3000] saved checkpoint to outputs/2D_heat_conduction
+[07:23:58] - [step:       3000] loss:  1.540e-01, time/iteration:  5.515e+01ms
+[07:24:02] - [step:       3100] record contraint batch time:  5.211e-02s
+[07:24:03] - [step:       3100] record validators time:  8.845e-01s
+[07:24:04] - [step:       3100] record inferencers time:  3.672e-01s
+[07:24:04] - [step:       3100] loss:  1.416e-01, time/iteration:  5.240e+01ms
+[07:24:08] - [step:       3200] record contraint batch time:  5.082e-02s
+[07:24:09] - [step:       3200] record validators time:  1.004e+00s
+[07:24:09] - [step:       3200] record inferencers time:  3.672e-01s
+[07:24:09] - [step:       3200] loss:  1.496e-01, time/iteration:  5.361e+01ms
+[07:24:13] - [step:       3300] record contraint batch time:  5.171e-02s
+[07:24:14] - [step:       3300] record validators time:  8.871e-01s
+[07:24:14] - [step:       3300] record inferencers time:  3.685e-01s
+[07:24:14] - [step:       3300] loss:  1.412e-01, time/iteration:  5.245e+01ms
+[07:24:18] - [step:       3400] record contraint batch time:  5.083e-02s
+[07:24:19] - [step:       3400] record validators time:  8.845e-01s
+[07:24:19] - [step:       3400] record inferencers time:  3.673e-01s
+[07:24:19] - [step:       3400] loss:  1.377e-01, time/iteration:  5.242e+01ms
+[07:24:23] - [step:       3500] record contraint batch time:  5.150e-02s
+[07:24:24] - [step:       3500] record validators time:  8.849e-01s
+[07:24:25] - [step:       3500] record inferencers time:  3.503e-01s
+[07:24:25] - [step:       3500] loss:  1.406e-01, time/iteration:  5.243e+01ms
+[07:24:29] - [step:       3600] record contraint batch time:  5.176e-02s
+[07:24:30] - [step:       3600] record validators time:  1.013e+00s
+[07:24:30] - [step:       3600] record inferencers time:  3.727e-01s
+[07:24:30] - [step:       3600] loss:  1.426e-01, time/iteration:  5.373e+01ms
+[07:24:34] - [step:       3700] record contraint batch time:  5.184e-02s
+[07:24:35] - [step:       3700] record validators time:  8.859e-01s
+[07:24:35] - [step:       3700] record inferencers time:  3.674e-01s
+[07:24:35] - [step:       3700] loss:  1.409e-01, time/iteration:  5.244e+01ms
+[07:24:39] - [step:       3800] record contraint batch time:  5.222e-02s
+[07:24:40] - [step:       3800] record validators time:  8.862e-01s
+[07:24:41] - [step:       3800] record inferencers time:  3.669e-01s
+[07:24:41] - [step:       3800] loss:  1.311e-01, time/iteration:  5.243e+01ms
+[07:24:45] - [step:       3900] record contraint batch time:  5.188e-02s
+[07:24:45] - [step:       3900] record validators time:  8.940e-01s
+[07:24:46] - [step:       3900] record inferencers time:  3.679e-01s
+[07:24:46] - [step:       3900] loss:  1.321e-01, time/iteration:  5.253e+01ms
+[07:24:50] - [step:       4000] record contraint batch time:  5.135e-02s
+[07:24:51] - [step:       4000] record validators time:  1.004e+00s
+[07:24:51] - [step:       4000] record inferencers time:  3.668e-01s
+[07:24:51] - [step:       4000] saved checkpoint to outputs/2D_heat_conduction
+[07:24:51] - [step:       4000] loss:  2.625e-01, time/iteration:  5.628e+01ms
+[07:24:55] - [step:       4100] record contraint batch time:  5.083e-02s
+[07:24:56] - [step:       4100] record validators time:  8.795e-01s
+[07:24:57] - [step:       4100] record inferencers time:  3.543e-01s
+[07:24:57] - [step:       4100] loss:  3.372e-01, time/iteration:  5.212e+01ms
+[07:25:01] - [step:       4200] record contraint batch time:  5.086e-02s
+[07:25:02] - [step:       4200] record validators time:  8.837e-01s
+[07:25:02] - [step:       4200] record inferencers time:  3.666e-01s
+[07:25:02] - [step:       4200] loss:  1.354e-01, time/iteration:  5.239e+01ms
+[07:25:06] - [step:       4300] record contraint batch time:  5.058e-02s
+[07:25:07] - [step:       4300] record validators time:  8.827e-01s
+[07:25:07] - [step:       4300] record inferencers time:  3.669e-01s
+[07:25:07] - [step:       4300] loss:  1.336e-01, time/iteration:  5.238e+01ms
+[07:25:11] - [step:       4400] record contraint batch time:  5.063e-02s
+[07:25:12] - [step:       4400] record validators time:  1.003e+00s
+[07:25:13] - [step:       4400] record inferencers time:  3.671e-01s
+[07:25:13] - [step:       4400] loss:  1.358e-01, time/iteration:  5.359e+01ms
+[07:25:17] - [step:       4500] record contraint batch time:  5.109e-02s
+[07:25:17] - [step:       4500] record validators time:  8.841e-01s
+[07:25:18] - [step:       4500] record inferencers time:  3.665e-01s
+[07:25:18] - [step:       4500] loss:  1.188e-01, time/iteration:  5.243e+01ms
+[07:25:22] - [step:       4600] record contraint batch time:  5.104e-02s
+[07:25:23] - [step:       4600] record validators time:  8.837e-01s
+[07:25:23] - [step:       4600] record inferencers time:  3.670e-01s
+[07:25:23] - [step:       4600] loss:  1.364e-01, time/iteration:  5.240e+01ms
+[07:25:27] - [step:       4700] record contraint batch time:  5.104e-02s
+[07:25:28] - [step:       4700] record validators time:  8.834e-01s
+[07:25:28] - [step:       4700] record inferencers time:  3.671e-01s
+[07:25:28] - [step:       4700] loss:  1.330e-01, time/iteration:  5.232e+01ms
+[07:25:32] - [step:       4800] record contraint batch time:  5.093e-02s
+[07:25:33] - [step:       4800] record validators time:  1.005e+00s
+[07:25:34] - [step:       4800] record inferencers time:  3.502e-01s
+[07:25:34] - [step:       4800] loss:  1.298e-01, time/iteration:  5.361e+01ms
+[07:25:38] - [step:       4900] record contraint batch time:  5.147e-02s
+[07:25:38] - [step:       4900] record validators time:  8.969e-01s
+[07:25:39] - [step:       4900] record inferencers time:  3.441e-01s
+[07:25:39] - [step:       4900] loss:  4.234e-01, time/iteration:  5.229e+01ms
+[07:25:43] - [step:       5000] record contraint batch time:  5.146e-02s
+[07:25:44] - [step:       5000] record validators time:  8.836e-01s
+[07:25:44] - [step:       5000] record inferencers time:  3.666e-01s
+[07:25:44] - [step:       5000] saved checkpoint to outputs/2D_heat_conduction
+[07:25:44] - [step:       5000] loss:  1.291e-01, time/iteration:  5.502e+01ms
+[07:25:48] - [step:       5100] record contraint batch time:  5.141e-02s
+[07:25:49] - [step:       5100] record validators time:  8.849e-01s
+[07:25:50] - [step:       5100] record inferencers time:  3.674e-01s
+[07:25:50] - [step:       5100] loss:  1.235e-01, time/iteration:  5.232e+01ms
+[07:25:54] - [step:       5200] record contraint batch time:  5.198e-02s
+[07:25:55] - [step:       5200] record validators time:  1.003e+00s
+[07:25:55] - [step:       5200] record inferencers time:  3.661e-01s
+[07:25:55] - [step:       5200] loss:  1.458e-01, time/iteration:  5.356e+01ms
+[07:25:59] - [step:       5300] record contraint batch time:  5.181e-02s
+[07:26:00] - [step:       5300] record validators time:  8.841e-01s
+[07:26:00] - [step:       5300] record inferencers time:  3.672e-01s
+[07:26:00] - [step:       5300] loss:  1.780e-01, time/iteration:  5.239e+01ms
+[07:26:04] - [step:       5400] record contraint batch time:  5.156e-02s
+[07:26:05] - [step:       5400] record validators time:  8.831e-01s
+[07:26:05] - [step:       5400] record inferencers time:  3.674e-01s
+[07:26:05] - [step:       5400] loss:  1.256e-01, time/iteration:  5.237e+01ms
+[07:26:09] - [step:       5500] record contraint batch time:  5.142e-02s
+[07:26:10] - [step:       5500] record validators time:  8.838e-01s
+[07:26:11] - [step:       5500] record inferencers time:  3.664e-01s
+[07:26:11] - [step:       5500] loss:  1.675e-01, time/iteration:  5.237e+01ms
+[07:26:15] - [step:       5600] record contraint batch time:  5.102e-02s
+[07:26:16] - [step:       5600] record validators time:  1.001e+00s
+[07:26:16] - [step:       5600] record inferencers time:  3.601e-01s
+[07:26:16] - [step:       5600] loss:  2.366e-01, time/iteration:  5.347e+01ms
+[07:26:20] - [step:       5700] record contraint batch time:  5.094e-02s
+[07:26:21] - [step:       5700] record validators time:  8.828e-01s
+[07:26:21] - [step:       5700] record inferencers time:  3.659e-01s
+[07:26:21] - [step:       5700] loss:  1.060e-01, time/iteration:  5.235e+01ms
+[07:26:25] - [step:       5800] record contraint batch time:  5.190e-02s
+[07:26:26] - [step:       5800] record validators time:  8.834e-01s
+[07:26:26] - [step:       5800] record inferencers time:  3.658e-01s
+[07:26:26] - [step:       5800] loss:  1.163e-01, time/iteration:  5.239e+01ms
+[07:26:30] - [step:       5900] record contraint batch time:  5.120e-02s
+[07:26:31] - [step:       5900] record validators time:  8.837e-01s
+[07:26:32] - [step:       5900] record inferencers time:  3.668e-01s
+[07:26:32] - [step:       5900] loss:  1.217e-01, time/iteration:  5.238e+01ms
+[07:26:36] - [step:       6000] record contraint batch time:  5.220e-02s
+[07:26:37] - [step:       6000] record validators time:  1.004e+00s
+[07:26:37] - [step:       6000] record inferencers time:  3.672e-01s
+[07:26:37] - [step:       6000] saved checkpoint to outputs/2D_heat_conduction
+[07:26:37] - [step:       6000] loss:  1.332e-01, time/iteration:  5.630e+01ms
+[07:26:41] - [step:       6100] record contraint batch time:  5.165e-02s
+[07:26:42] - [step:       6100] record validators time:  8.840e-01s
+[07:26:43] - [step:       6100] record inferencers time:  3.661e-01s
+[07:26:43] - [step:       6100] loss:  1.085e-01, time/iteration:  5.231e+01ms
+[07:26:47] - [step:       6200] record contraint batch time:  5.227e-02s
+[07:26:47] - [step:       6200] record validators time:  8.818e-01s
+[07:26:48] - [step:       6200] record inferencers time:  3.663e-01s
+[07:26:48] - [step:       6200] loss:  1.038e-01, time/iteration:  5.229e+01ms
+[07:26:52] - [step:       6300] record contraint batch time:  5.233e-02s
+[07:26:53] - [step:       6300] record validators time:  8.840e-01s
+[07:26:53] - [step:       6300] record inferencers time:  3.661e-01s
+[07:26:53] - [step:       6300] loss:  1.002e-01, time/iteration:  5.239e+01ms
+[07:26:57] - [step:       6400] record contraint batch time:  5.141e-02s
+[07:26:58] - [step:       6400] record validators time:  1.003e+00s
+[07:26:58] - [step:       6400] record inferencers time:  3.660e-01s
+[07:26:58] - [step:       6400] loss:  9.706e-02, time/iteration:  5.355e+01ms
+[07:27:02] - [step:       6500] record contraint batch time:  5.193e-02s
+[07:27:03] - [step:       6500] record validators time:  8.827e-01s
+[07:27:04] - [step:       6500] record inferencers time:  3.668e-01s
+[07:27:04] - [step:       6500] loss:  8.813e-02, time/iteration:  5.238e+01ms
+[07:27:08] - [step:       6600] record contraint batch time:  5.182e-02s
+[07:27:09] - [step:       6600] record validators time:  8.802e-01s
+[07:27:09] - [step:       6600] record inferencers time:  3.649e-01s
+[07:27:09] - [step:       6600] loss:  9.147e-02, time/iteration:  5.240e+01ms
+[07:27:13] - [step:       6700] record contraint batch time:  5.141e-02s
+[07:27:14] - [step:       6700] record validators time:  8.831e-01s
+[07:27:14] - [step:       6700] record inferencers time:  3.668e-01s
+[07:27:14] - [step:       6700] loss:  9.385e-02, time/iteration:  5.241e+01ms
+[07:27:18] - [step:       6800] record contraint batch time:  5.092e-02s
+[07:27:19] - [step:       6800] record validators time:  1.002e+00s
+[07:27:19] - [step:       6800] record inferencers time:  3.652e-01s
+[07:27:19] - [step:       6800] loss:  8.497e-02, time/iteration:  5.348e+01ms
+[07:27:23] - [step:       6900] record contraint batch time:  5.141e-02s
+[07:27:24] - [step:       6900] record validators time:  8.811e-01s
+[07:27:25] - [step:       6900] record inferencers time:  3.650e-01s
+[07:27:25] - [step:       6900] loss:  9.017e-02, time/iteration:  5.233e+01ms
+[07:27:29] - [step:       7000] record contraint batch time:  5.145e-02s
+[07:27:30] - [step:       7000] record validators time:  8.801e-01s
+[07:27:30] - [step:       7000] record inferencers time:  3.648e-01s
+[07:27:30] - [step:       7000] saved checkpoint to outputs/2D_heat_conduction
+[07:27:30] - [step:       7000] loss:  1.375e-01, time/iteration:  5.503e+01ms
+[07:27:34] - [step:       7100] record contraint batch time:  5.058e-02s
+[07:27:35] - [step:       7100] record validators time:  8.794e-01s
+[07:27:35] - [step:       7100] record inferencers time:  3.654e-01s
+[07:27:35] - [step:       7100] loss:  8.990e-02, time/iteration:  5.229e+01ms
+[07:27:39] - [step:       7200] record contraint batch time:  5.080e-02s
+[07:27:40] - [step:       7200] record validators time:  1.001e+00s
+[07:27:41] - [step:       7200] record inferencers time:  3.651e-01s
+[07:27:41] - [step:       7200] loss:  9.328e-02, time/iteration:  5.356e+01ms
+[07:27:45] - [step:       7300] record contraint batch time:  5.038e-02s
+[07:27:46] - [step:       7300] record validators time:  8.809e-01s
+[07:27:46] - [step:       7300] record inferencers time:  3.653e-01s
+[07:27:46] - [step:       7300] loss:  1.053e-01, time/iteration:  5.236e+01ms
+[07:27:50] - [step:       7400] record contraint batch time:  5.071e-02s
+[07:27:51] - [step:       7400] record validators time:  8.811e-01s
+[07:27:51] - [step:       7400] record inferencers time:  3.653e-01s
+[07:27:51] - [step:       7400] loss:  9.204e-02, time/iteration:  5.230e+01ms
+[07:27:55] - [step:       7500] record contraint batch time:  5.091e-02s
+[07:27:56] - [step:       7500] record validators time:  8.805e-01s
+[07:27:57] - [step:       7500] record inferencers time:  3.497e-01s
+[07:27:57] - [step:       7500] loss:  9.769e-02, time/iteration:  5.237e+01ms
+[07:28:00] - [step:       7600] record contraint batch time:  5.158e-02s
+[07:28:01] - [step:       7600] record validators time:  1.002e+00s
+[07:28:02] - [step:       7600] record inferencers time:  3.658e-01s
+[07:28:02] - [step:       7600] loss:  7.882e-02, time/iteration:  5.357e+01ms
+[07:28:06] - [step:       7700] record contraint batch time:  5.064e-02s
+[07:28:07] - [step:       7700] record validators time:  8.840e-01s
+[07:28:07] - [step:       7700] record inferencers time:  3.652e-01s
+[07:28:07] - [step:       7700] loss:  7.675e-02, time/iteration:  5.239e+01ms
+[07:28:11] - [step:       7800] record contraint batch time:  5.044e-02s
+[07:28:12] - [step:       7800] record validators time:  8.962e-01s
+[07:28:12] - [step:       7800] record inferencers time:  3.494e-01s
+[07:28:12] - [step:       7800] loss:  7.896e-02, time/iteration:  5.237e+01ms
+[07:28:16] - [step:       7900] record contraint batch time:  5.113e-02s
+[07:28:17] - [step:       7900] record validators time:  8.809e-01s
+[07:28:18] - [step:       7900] record inferencers time:  3.649e-01s
+[07:28:18] - [step:       7900] loss:  8.119e-02, time/iteration:  5.235e+01ms
+[07:28:22] - [step:       8000] record contraint batch time:  5.156e-02s
+[07:28:23] - [step:       8000] record validators time:  1.028e+00s
+[07:28:23] - [step:       8000] record inferencers time:  3.657e-01s
+[07:28:23] - [step:       8000] saved checkpoint to outputs/2D_heat_conduction
+[07:28:23] - [step:       8000] loss:  8.269e-02, time/iteration:  5.658e+01ms
+[07:28:27] - [step:       8100] record contraint batch time:  5.089e-02s
+[07:28:28] - [step:       8100] record validators time:  8.806e-01s
+[07:28:28] - [step:       8100] record inferencers time:  3.652e-01s
+[07:28:28] - [step:       8100] loss:  1.314e-01, time/iteration:  5.225e+01ms
+[07:28:32] - [step:       8200] record contraint batch time:  5.104e-02s
+[07:28:33] - [step:       8200] record validators time:  8.818e-01s
+[07:28:34] - [step:       8200] record inferencers time:  3.655e-01s
+[07:28:34] - [step:       8200] loss:  9.634e-02, time/iteration:  5.228e+01ms
+[07:28:38] - [step:       8300] record contraint batch time:  5.079e-02s
+[07:28:39] - [step:       8300] record validators time:  8.801e-01s
+[07:28:39] - [step:       8300] record inferencers time:  3.644e-01s
+[07:28:39] - [step:       8300] loss:  1.143e-01, time/iteration:  5.224e+01ms
+[07:28:43] - [step:       8400] record contraint batch time:  5.047e-02s
+[07:28:44] - [step:       8400] record validators time:  9.953e-01s
+[07:28:44] - [step:       8400] record inferencers time:  3.652e-01s
+[07:28:44] - [step:       8400] loss:  7.218e-02, time/iteration:  5.349e+01ms
+[07:28:48] - [step:       8500] record contraint batch time:  5.094e-02s
+[07:28:49] - [step:       8500] record validators time:  9.013e-01s
+[07:28:50] - [step:       8500] record inferencers time:  3.747e-01s
+[07:28:50] - [step:       8500] loss:  6.897e-02, time/iteration:  5.265e+01ms
+[07:28:54] - [step:       8600] record contraint batch time:  5.141e-02s
+[07:28:54] - [step:       8600] record validators time:  8.808e-01s
+[07:28:55] - [step:       8600] record inferencers time:  3.490e-01s
+[07:28:55] - [step:       8600] loss:  8.377e-02, time/iteration:  5.237e+01ms
+[07:28:59] - [step:       8700] record contraint batch time:  5.244e-02s
+[07:29:00] - [step:       8700] record validators time:  8.799e-01s
+[07:29:00] - [step:       8700] record inferencers time:  3.657e-01s
+[07:29:00] - [step:       8700] loss:  8.944e-02, time/iteration:  5.241e+01ms
+[07:29:04] - [step:       8800] record contraint batch time:  5.170e-02s
+[07:29:05] - [step:       8800] record validators time:  1.022e+00s
+[07:29:05] - [step:       8800] record inferencers time:  3.662e-01s
+[07:29:05] - [step:       8800] loss:  6.854e-02, time/iteration:  5.377e+01ms
+[07:29:09] - [step:       8900] record contraint batch time:  5.352e-02s
+[07:29:10] - [step:       8900] record validators time:  8.747e-01s
+[07:29:11] - [step:       8900] record inferencers time:  3.661e-01s
+[07:29:11] - [step:       8900] loss:  6.904e-02, time/iteration:  5.232e+01ms
+[07:29:15] - [step:       9000] record contraint batch time:  5.227e-02s
+[07:29:16] - [step:       9000] record validators time:  9.017e-01s
+[07:29:16] - [step:       9000] record inferencers time:  3.657e-01s
+[07:29:16] - [step:       9000] saved checkpoint to outputs/2D_heat_conduction
+[07:29:16] - [step:       9000] loss:  7.170e-02, time/iteration:  5.531e+01ms
+[07:29:20] - [step:       9100] record contraint batch time:  5.184e-02s
+[07:29:21] - [step:       9100] record validators time:  8.827e-01s
+[07:29:21] - [step:       9100] record inferencers time:  3.656e-01s
+[07:29:21] - [step:       9100] loss:  7.475e-02, time/iteration:  5.235e+01ms
+[07:29:25] - [step:       9200] record contraint batch time:  5.277e-02s
+[07:29:26] - [step:       9200] record validators time:  9.986e-01s
+[07:29:27] - [step:       9200] record inferencers time:  3.586e-01s
+[07:29:27] - [step:       9200] loss:  1.181e-01, time/iteration:  5.345e+01ms
+[07:29:31] - [step:       9300] record contraint batch time:  5.220e-02s
+[07:29:32] - [step:       9300] record validators time:  8.759e-01s
+[07:29:32] - [step:       9300] record inferencers time:  3.651e-01s
+[07:29:32] - [step:       9300] loss:  7.459e-02, time/iteration:  5.228e+01ms
+[07:29:36] - [step:       9400] record contraint batch time:  5.285e-02s
+[07:29:37] - [step:       9400] record validators time:  8.974e-01s
+[07:29:37] - [step:       9400] record inferencers time:  3.498e-01s
+[07:29:37] - [step:       9400] loss:  7.346e-02, time/iteration:  5.237e+01ms
+[07:29:41] - [step:       9500] record contraint batch time:  5.114e-02s
+[07:29:42] - [step:       9500] record validators time:  8.801e-01s
+[07:29:42] - [step:       9500] record inferencers time:  3.661e-01s
+[07:29:42] - [step:       9500] loss:  6.667e-02, time/iteration:  5.235e+01ms
+[07:29:46] - [step:       9600] record contraint batch time:  5.058e-02s
+[07:29:47] - [step:       9600] record validators time:  9.945e-01s
+[07:29:48] - [step:       9600] record inferencers time:  3.657e-01s
+[07:29:48] - [step:       9600] loss:  2.244e-01, time/iteration:  5.353e+01ms
+[07:29:52] - [step:       9700] record contraint batch time:  5.115e-02s
+[07:29:53] - [step:       9700] record validators time:  9.067e-01s
+[07:29:53] - [step:       9700] record inferencers time:  3.665e-01s
+[07:29:53] - [step:       9700] loss:  7.003e-02, time/iteration:  5.255e+01ms
+[07:29:57] - [step:       9800] record contraint batch time:  5.163e-02s
+[07:29:58] - [step:       9800] record validators time:  9.060e-01s
+[07:29:58] - [step:       9800] record inferencers time:  3.664e-01s
+[07:29:58] - [step:       9800] loss:  7.012e-02, time/iteration:  5.263e+01ms
+[07:30:03] - [step:       9900] record contraint batch time:  5.121e-02s
+[07:30:03] - [step:       9900] record validators time:  8.730e-01s
+[07:30:04] - [step:       9900] record inferencers time:  3.656e-01s
+[07:30:04] - [step:       9900] loss:  7.603e-02, time/iteration:  5.451e+01ms
+[07:30:08] - [step:      10000] record contraint batch time:  5.237e-02s
+[07:30:09] - [step:      10000] record validators time:  1.027e+00s
+[07:30:09] - [step:      10000] record inferencers time:  3.665e-01s
+[07:30:09] - [step:      10000] saved checkpoint to outputs/2D_heat_conduction
+[07:30:09] - [step:      10000] loss:  6.228e-02, time/iteration:  5.429e+01ms
+[07:30:13] - [step:      10100] record contraint batch time:  5.113e-02s
+[07:30:14] - [step:      10100] record validators time:  8.808e-01s
+[07:30:14] - [step:      10100] record inferencers time:  3.657e-01s
+[07:30:14] - [step:      10100] loss:  8.029e-02, time/iteration:  5.225e+01ms
+[07:30:18] - [step:      10200] record contraint batch time:  5.059e-02s
+[07:30:19] - [step:      10200] record validators time:  8.821e-01s
+[07:30:20] - [step:      10200] record inferencers time:  3.499e-01s
+[07:30:20] - [step:      10200] loss:  6.910e-02, time/iteration:  5.229e+01ms
+[07:30:24] - [step:      10300] record contraint batch time:  5.080e-02s
+[07:30:25] - [step:      10300] record validators time:  9.002e-01s
+[07:30:25] - [step:      10300] record inferencers time:  3.655e-01s
+[07:30:25] - [step:      10300] loss:  6.711e-02, time/iteration:  5.256e+01ms
+[07:30:29] - [step:      10400] record contraint batch time:  5.216e-02s
+[07:30:30] - [step:      10400] record validators time:  1.029e+00s
+[07:30:30] - [step:      10400] record inferencers time:  3.499e-01s
+[07:30:30] - [step:      10400] loss:  9.655e-02, time/iteration:  5.388e+01ms
+[07:30:34] - [step:      10500] record contraint batch time:  5.151e-02s
+[07:30:35] - [step:      10500] record validators time:  9.009e-01s
+[07:30:36] - [step:      10500] record inferencers time:  3.662e-01s
+[07:30:36] - [step:      10500] loss:  1.025e-01, time/iteration:  5.256e+01ms
+[07:30:40] - [step:      10600] record contraint batch time:  5.234e-02s
+[07:30:40] - [step:      10600] record validators time:  9.065e-01s
+[07:30:41] - [step:      10600] record inferencers time:  3.661e-01s
+[07:30:41] - [step:      10600] loss:  6.675e-02, time/iteration:  5.262e+01ms
+[07:30:45] - [step:      10700] record contraint batch time:  5.236e-02s
+[07:30:46] - [step:      10700] record validators time:  8.838e-01s
+[07:30:46] - [step:      10700] record inferencers time:  3.650e-01s
+[07:30:46] - [step:      10700] loss:  1.129e-01, time/iteration:  5.248e+01ms
+[07:30:50] - [step:      10800] record contraint batch time:  5.153e-02s
+[07:30:51] - [step:      10800] record validators time:  1.022e+00s
+[07:30:51] - [step:      10800] record inferencers time:  3.661e-01s
+[07:30:51] - [step:      10800] loss:  6.809e-02, time/iteration:  5.369e+01ms
+[07:30:56] - [step:      10900] record contraint batch time:  5.085e-02s
+[07:30:57] - [step:      10900] record validators time:  9.072e-01s
+[07:30:57] - [step:      10900] record inferencers time:  3.667e-01s
+[07:30:57] - [step:      10900] loss:  6.573e-02, time/iteration:  5.486e+01ms
+[07:31:01] - [step:      11000] record contraint batch time:  5.207e-02s
+[07:31:02] - [step:      11000] record validators time:  8.717e-01s
+[07:31:02] - [step:      11000] record inferencers time:  3.649e-01s
+[07:31:02] - [step:      11000] saved checkpoint to outputs/2D_heat_conduction
+[07:31:02] - [step:      11000] loss:  7.411e-02, time/iteration:  5.271e+01ms
+[07:31:06] - [step:      11100] record contraint batch time:  5.227e-02s
+[07:31:07] - [step:      11100] record validators time:  8.810e-01s
+[07:31:07] - [step:      11100] record inferencers time:  3.660e-01s
+[07:31:07] - [step:      11100] loss:  7.603e-02, time/iteration:  5.229e+01ms
+[07:31:11] - [step:      11200] record contraint batch time:  5.124e-02s
+[07:31:12] - [step:      11200] record validators time:  1.021e+00s
+[07:31:13] - [step:      11200] record inferencers time:  3.658e-01s
+[07:31:13] - [step:      11200] loss:  7.962e-02, time/iteration:  5.367e+01ms
+[07:31:17] - [step:      11300] record contraint batch time:  5.135e-02s
+[07:31:18] - [step:      11300] record validators time:  8.754e-01s
+[07:31:18] - [step:      11300] record inferencers time:  3.655e-01s
+[07:31:18] - [step:      11300] loss:  7.691e-02, time/iteration:  5.223e+01ms
+[07:31:22] - [step:      11400] record contraint batch time:  5.148e-02s
+[07:31:23] - [step:      11400] record validators time:  9.061e-01s
+[07:31:23] - [step:      11400] record inferencers time:  3.675e-01s
+[07:31:23] - [step:      11400] loss:  6.237e-02, time/iteration:  5.263e+01ms
+[07:31:27] - [step:      11500] record contraint batch time:  5.194e-02s
+[07:31:28] - [step:      11500] record validators time:  9.011e-01s
+[07:31:29] - [step:      11500] record inferencers time:  3.657e-01s
+[07:31:29] - [step:      11500] loss:  6.643e-02, time/iteration:  5.259e+01ms
+[07:31:33] - [step:      11600] record contraint batch time:  5.300e-02s
+[07:31:34] - [step:      11600] record validators time:  1.029e+00s
+[07:31:34] - [step:      11600] record inferencers time:  3.513e-01s
+[07:31:34] - [step:      11600] loss:  6.388e-02, time/iteration:  5.381e+01ms
+[07:31:38] - [step:      11700] record contraint batch time:  5.102e-02s
+[07:31:39] - [step:      11700] record validators time:  8.809e-01s
+[07:31:39] - [step:      11700] record inferencers time:  3.668e-01s
+[07:31:39] - [step:      11700] loss:  7.165e-02, time/iteration:  5.233e+01ms
+[07:31:43] - [step:      11800] record contraint batch time:  5.209e-02s
+[07:31:44] - [step:      11800] record validators time:  9.019e-01s
+[07:31:44] - [step:      11800] record inferencers time:  3.658e-01s
+[07:31:44] - [step:      11800] loss:  7.224e-02, time/iteration:  5.250e+01ms
+[07:31:49] - [step:      11900] record contraint batch time:  5.083e-02s
+[07:31:50] - [step:      11900] record validators time:  9.053e-01s
+[07:31:50] - [step:      11900] record inferencers time:  3.665e-01s
+[07:31:50] - [step:      11900] loss:  7.339e-02, time/iteration:  5.485e+01ms
