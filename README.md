@@ -10,3 +10,8 @@ You need to install [Docker](https://docs.docker.com/get-docker/). Then you can 
 
  * [DeepXDE](https://deepxde.readthedocs.io/en/latest/user/installation.html#docker)
  * [NVIDIA Modulus 22.03.1](https://nvcr.io/nvidia/modulus/modulus:22.03.1)
+
+ # Acknowledgements
+
+This work is funded by the United Kingdom Atomic Energy Authority (UKAEA) and the Engineering and Physical Sciences Research Council (EPSRC) under the Grant Agreement Numbers [EP/T517987/1](https://gtr.ukri.org/projects?ref=studentship-2601058#/tabOverview) and [EP/R012091/1](https://gtr.ukri.org/projects?ref=EP%2FR012091%2F1). We acknowledge the support of [Supercomputing Wales](https://www.supercomputing.wales/) and [AccelerateAI](https://sa2c.github.io/AccelerateAI/) projects, which is part-funded by the European Regional Development Fund (ERDF) via the Welsh Government for giving us access to NVIDIA A100 40 GB GPUs for batch training. We also acknowledge the support of NVIDIA for donating us a NVIDIA RTX A5000 24 GB for local testing.
+
